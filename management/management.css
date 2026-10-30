@@ -1,0 +1,18 @@
+body {
+  font: message-box;
+  margin: 0;
+  padding: 8px 0;
+  color: inherit;
+  background: transparent;
+}
+form { max-width: 560px; }
+label { display: block; margin: 12px 0 4px; font-weight: 600; }
+label.check { font-weight: normal; display: flex; gap: 6px; align-items: center; }
+input:not([type="checkbox"]) { width: 100%; box-sizing: border-box; padding: 4px 6px; }
+.row { display: flex; gap: 12px; }
+.row > div { flex: 1; }
+.hint { margin: 4px 0 0; font-size: 0.9em; opacity: 0.75; }
+.server { margin: 0 0 4px; }
+.actions { margin-top: 16px; display: flex; gap: 12px; align-items: center; }
+#status.error { color: #c50042; }
+#status.ok { color: #058b00; }

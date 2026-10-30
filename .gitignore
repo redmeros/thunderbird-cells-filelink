@@ -1,0 +1,26 @@
+# Build output
+dist/
+*.xpi
+*.zip
+
+# Local / personal Claude Code settings
+.claude/settings.local.json
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Tooling
+node_modules/
+web-ext-artifacts/
+*.log
+
+# Local secrets (never commit tokens)
+.env
+.env.*
+*.local.json

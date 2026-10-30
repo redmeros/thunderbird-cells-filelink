@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="management.css">
+</head>
+<body>
+  <form id="settings">
+    <p class="server">Server: <strong id="server"></strong></p>
+
+    <label for="token">Personal Access Token</label>
+    <input id="token" type="password" autocomplete="off" required>
+    <p class="hint">Create one in Cells (your profile → Personal Access Tokens) or ask IT. Use “Auto Refresh” expiration.</p>
+
+    <div class="row">
+      <div>
+        <label for="workspace">Workspace</label>
+        <input id="workspace" required>
+      </div>
+      <div>
+        <label for="folder">Folder</label>
+        <input id="folder">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="expiryDays">Link expires after (days, 0 = never)</label>
+        <input id="expiryDays" type="number" min="0" step="1">
+      </div>
+      <div>
+        <label for="maxDownloads">Max downloads (0 = unlimited)</label>
+        <input id="maxDownloads" type="number" min="0" step="1">
+      </div>
+    </div>
+
+    <label for="password">Link password (optional)</label>
+    <input id="password" type="password" autocomplete="off">
+    <p class="hint">Recipients need this password to download. Send it separately.</p>
+
+    <label class="check"><input id="deleteOnRemove" type="checkbox"> Delete the file from Cells when I remove the attachment from a draft</label>
+
+    <div class="actions">
+      <button type="submit">Save</button>
+      <span id="status" role="status"></span>
+    </div>
+  </form>
+  <script type="module" src="management.js"></script>
+</body>
+</html>
