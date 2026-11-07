@@ -6,12 +6,21 @@ Thunderbird add-on (Manifest V3, Thunderbird 128+). It adds a **Pydio Cells** Fi
 
 ## Configure your server
 
-Before installing, point the add-on at your Cells instance in two places:
+The repository only contains placeholders. Your server and add-on ID go in a local file that git ignores:
 
-- `lib/config.js` → `SERVER_URL = "https://cells.example.com"`
-- `manifest.json` → `"host_permissions": ["https://cells.example.com/*"]`
+```powershell
+Copy-Item build.local.example.json build.local.json   # then edit it
+./build.ps1
+```
 
-If you distribute the add-on, also change the add-on ID (`browser_specific_settings.gecko.id`) in `manifest.json` to one you own.
+```json
+{
+  "serverUrl": "https://cells.your-company.com",
+  "addonId": "cells-filelink@your-company.com"
+}
+```
+
+`build.ps1` applies these values to the packaged copies of `manifest.json` and `lib/config.js` only, so the source files never change. Without `build.local.json` it warns and builds with the placeholders, and that build cannot reach a real server.
 
 ## How it works
 
@@ -25,7 +34,7 @@ Each upload goes in its own timestamped subfolder. Files with the same name don'
 
 ## Install (development)
 
-1. In Thunderbird open **Tools → Developer Tools → Debug Add-ons → Load Temporary Add-on…** and pick `manifest.json`.
+1. In Thunderbird open **Tools → Developer Tools → Debug Add-ons → Load Temporary Add-on…** and pick the built `.xpi` from `dist/`. Loading `manifest.json` directly uses the placeholder server.
 2. Go to **Settings → Composition → Attachments → Add Pydio Cells**.
 3. Paste a Cells **Personal Access Token** and click **Save**. Saving checks the connection first.
 4. Compose a message, attach a file, and choose **Filelink → Pydio Cells**. You can also let Thunderbird offer it for files above the size threshold.

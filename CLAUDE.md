@@ -7,4 +7,4 @@ documentation for filelink is at <https://webextension-api.thunderbird.net/en/mv
 
 pydio cells expose rest api that can be find at <https://docs.pydio.com/latest/developer-guide/rest-api/index/>
 
-the pydio instance URL is configured in lib/config.js and manifest.json (placeholder: <https://cells.example.com>)
+the pydio instance URL and add-on id are set in the git-ignored build.local.json, which build.ps1 applies to the packaged files. lib/config.js and manifest.json keep the placeholder <https://cells.example.com> and must not be committed with real values.

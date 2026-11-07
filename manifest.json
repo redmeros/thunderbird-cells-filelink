@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Cells FileLink",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Send large attachments as download links via a Pydio Cells server.",
   "browser_specific_settings": {
     "gecko": {

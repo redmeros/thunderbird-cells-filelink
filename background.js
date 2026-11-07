@@ -105,13 +105,15 @@ browser.cloudFile.onFileDeleted.addListener(async (account, fileId) => {
   }
 });
 
-browser.cloudFile.onAccountAdded.addListener(async (account) => {
-  const settings = await loadSettings(account.id);
-  await browser.cloudFile.updateAccount(account.id, {
+async function syncAccount(accountId) {
+  const settings = await loadSettings(accountId);
+  await browser.cloudFile.updateAccount(accountId, {
     configured: !!settings.token,
     uploadSizeLimit: UPLOAD_SIZE_LIMIT,
   });
-});
+}
+
+browser.cloudFile.onAccountAdded.addListener((account) => syncAccount(account.id));
 
 browser.cloudFile.onAccountDeleted.addListener(async (accountId) => {
   const all = await browser.storage.local.get(null);
@@ -142,3 +144,7 @@ async function pruneOldEntries() {
   if (stale.length) await browser.storage.local.remove(stale);
 }
 browser.runtime.onStartup.addListener(pruneOldEntries);
+
+// Thunderbird does not persist `configured`: every account starts unconfigured after a restart.
+// The onStartup listener above also ensures this script is woken at startup.
+browser.cloudFile.getAllAccounts().then((accounts) => Promise.all(accounts.map((a) => syncAccount(a.id))));
